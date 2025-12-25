@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agent 50 Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>body{background:#f4f6f8; padding:20px} .cat-box{background:white; padding:15px; margin-bottom:15px; border-radius:8px; border-left:5px solid #27ae60;}</style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="m-0">👑 AGENT 50 ADMIN</h1>
+            <button class="btn btn-lg btn-dark" onclick="addRestaurant()">🏢 Add New Restaurant</button>
+        </div>
+        
+        <div class="row text-center mb-4">
+            <div class="col"><div class="card p-3 bg-success text-white"><h3>Sales: Rs <span id="sales">0</span></h3></div></div>
+            <div class="col"><div class="card p-3 bg-primary text-white"><h3>Orders: <span id="orders">0</span></h3></div></div>
+        </div>
+
+        <div id="content"></div>
+    </div>
+
+<script>
+    const API = "http://192.168.0.108:5000";
+
+    async function load() {
+        let res = await fetch(API + '/admin/data');
+        let data = await res.json();
+        
+        document.getElementById('sales').innerText = data.stats.sales;
+        document.getElementById('orders').innerText = data.stats.orders;
+
+        let html = '';
+        data.restaurants.forEach(r => {
+            html += `<div class="card p-3 mb-5 shadow-sm">
+                <div class="d-flex justify-content-between">
+                    <h2 class="text-primary">${r.name}</h2>
+                    <span class="badge bg-secondary">ID: ${r.id}</span>
+                </div>
+                <button class="btn btn-sm btn-warning w-100 my-2" onclick="addCat('${r.id}')">📂 Add Category (e.g. Starters)</button>
+                <hr>`;
+            
+            r.menu.forEach(c => {
+                let itemsHtml = c.items.map(i => 
+                    `<li class="list-group-item d-flex justify-content-between">
+                        ${i.name} (Rs ${i.price})
+                        <button class="btn btn-sm btn-danger" onclick="delItem('${r.id}', '${c.category}', '${i.name}')">X</button>
+                    </li>`).join('');
+
+                html += `
+                <div class="cat-box">
+                    <h4>📂 ${c.category}</h4>
+                    <ul class="list-group mb-2">${itemsHtml}</ul>
+                    <div class="input-group">
+                        <input type="text" id="n-${r.id}-${c.category}" class="form-control" placeholder="Item Name">
+                        <input type="number" id="p-${r.id}-${c.category}" class="form-control" placeholder="Price">
+                        <button class="btn btn-success" onclick="addItem('${r.id}', '${c.category}')">Add</button>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+        });
+        document.getElementById('content').innerHTML = html;
+    }
+
+    // 🆕 FUNCTION TO ADD RESTAURANT
+    async function addRestaurant() {
+        let name = prompt("Enter New Restaurant Name (e.g. Pizza Hut):");
+        if(name) {
+            await fetch(API + '/admin/restaurant/add', {
+                method: 'POST', 
+                headers:{'Content-Type':'application/json'}, 
+                body:JSON.stringify({name: name})
+            });
+            alert("Restaurant Added! Page will refresh.");
+            load();
+        }
+    }
+
+    async function addCat(rid) {
+        let cat = prompt("Enter Category Name (e.g. Starters):");
+        if(cat) await post('/admin/category/add', {restaurant_id: rid, category: cat});
+    }
+
+    async function addItem(rid, cat) {
+        let name = document.getElementById(`n-${rid}-${cat}`).value;
+        let price = document.getElementById(`p-${rid}-${cat}`).value;
+        if(!name || !price) return alert("Please enter Name and Price!"); 
+        await post('/admin/menu/add', {restaurant_id: rid, category: cat, name: name, price: price});
+    }
+
+    async function delItem(rid, cat, name) {
+        if(confirm("Delete?")) await post('/admin/menu/delete', {restaurant_id: rid, category: cat, name: name});
+    }
+
+    async function post(url, data) {
+        await fetch(API + url, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)});
+        load();
+    }
+
+    load();
+</script>
+</body>
+</html>
