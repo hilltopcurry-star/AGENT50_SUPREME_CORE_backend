@@ -1,29 +1,51 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import func
+from datetime import datetime, timedelta
 import uuid
 import os
 
 app = Flask(__name__, template_folder='templates')
 CORS(app)
 
-# ✅ DATABASE CONFIGURATION (Neon DB)
+# ✅ NEON DATABASE CONFIGURATION
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://neondb_owner:npg_1M9UTVEHJrGt@ep-falling-salad-ah3w24sg-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = { "pool_pre_ping": True, "pool_recycle": 300 }
 
 db = SQLAlchemy(app)
 
-# -------------------- MODELS --------------------
+# -------------------- 🗄️ DATABASE MODELS --------------------
+
+# 1. USER TABLE (Login System ke liye)
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.String(50), primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    role = db.Column(db.String(20), nullable=False) # 'super_admin' ya 'manager'
+    restaurant_id = db.Column(db.String(50), nullable=True) # Agar manager hai to kis restaurant ka?
+
+# 2. RESTAURANT TABLE (Updated with Phone/Email)
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
     id = db.Column(db.String(50), primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    menu = db.Column(db.JSON, nullable=False) # Stores Categories & Items
+    phone = db.Column(db.String(20), default="") # 🆕 Contact Number
+    email = db.Column(db.String(50), default="") # 🆕 Email Address
+    menu = db.Column(db.JSON, nullable=False) 
     def to_dict(self):
-        return {"id": self.id, "name": self.name, "menu": self.menu}
+        return {
+            "id": self.id, 
+            "name": self.name, 
+            "menu": self.menu,
+            "phone": self.phone,
+            "email": self.email
+        }
 
+# 3. ORDERS TABLE
 class Order(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.String(50), primary_key=True)
@@ -39,7 +61,8 @@ class Order(db.Model):
             "restaurant_id": self.restaurant_id,
             "items": [item.name for item in self.items], 
             "total_amount": self.total_amount,
-            "status": self.status
+            "status": self.status,
+            "date": self.created_at.strftime("%Y-%m-%d %H:%M")
         }
 
 class OrderItem(db.Model):
@@ -49,20 +72,26 @@ class OrderItem(db.Model):
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
 
+# -------------------- 🛠️ INITIALIZATION --------------------
 def init_db():
     with app.app_context():
         try:
             db.create_all()
+            
+            # 🌱 Create SUPER ADMIN if not exists
+            if not User.query.filter_by(role='super_admin').first():
+                print("🌱 Creating Super Admin...")
+                hashed_pw = generate_password_hash("admin123") # Default Password
+                admin = User(id="admin_1", username="admin", password=hashed_pw, role="super_admin")
+                db.session.add(admin)
+                db.session.commit()
+                print("✅ Super Admin Created: admin / admin123")
+
+            # 🌱 Seed Restaurants if empty
             if not Restaurant.query.first():
                 print("🌱 Seeding Categories...")
-                menu1 = [
-                    {"category": "Rice Delights 🍛", "items": [{"name": "Chicken Biryani", "price": 250}]},
-                    {"category": "Sides 🥗", "items": [{"name": "Raita", "price": 50}]}
-                ]
-                menu2 = [
-                    {"category": "Burgers 🍔", "items": [{"name": "Zinger Burger", "price": 350}]},
-                    {"category": "Drinks 🥤", "items": [{"name": "Cola", "price": 100}]}
-                ]
+                menu1 = [{"category": "Biryani Special 🍛", "items": [{"name": "Chicken Biryani", "price": 250}]}]
+                menu2 = [{"category": "Burgers 🍔", "items": [{"name": "Zinger Burger", "price": 350}]}]
                 db.session.add(Restaurant(id="res_1", name="Biryani House", menu=menu1))
                 db.session.add(Restaurant(id="res_2", name="Burger King", menu=menu2))
                 db.session.commit()
@@ -70,43 +99,122 @@ def init_db():
         except Exception as e:
             print(f"❌ Database Error: {e}")
 
-# -------------------- ROUTES --------------------
+# -------------------- 🔐 AUTH ROUTES (LOGIN) --------------------
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    user = User.query.filter_by(username=data.get('username')).first()
+    
+    if user and check_password_hash(user.password, data.get('password')):
+        return jsonify({
+            "message": "Login Success",
+            "role": user.role,
+            "restaurant_id": user.restaurant_id,
+            "username": user.username
+        })
+    return jsonify({"error": "Invalid Username or Password"}), 401
+
+@app.route('/admin/create_manager', methods=['POST'])
+def create_manager():
+    # Super Admin can create managers
+    data = request.json
+    if User.query.filter_by(username=data['username']).first():
+        return jsonify({"error": "Username already exists"}), 400
+        
+    new_user = User(
+        id=str(uuid.uuid4()),
+        username=data['username'],
+        password=generate_password_hash(data['password']),
+        role="manager",
+        restaurant_id=data['restaurant_id']
+    )
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({"message": "Manager Created Successfully!"})
+
+# -------------------- 📊 DASHBOARD & REPORTS (The Brain) --------------------
 @app.route('/')
-def home(): return "SERVER LIVE 🚀"
+def home(): return "AGENT 50 SERVER LIVE 🚀"
 
 @app.route('/admin')
 def admin(): return render_template('admin.html')
 
-@app.route('/admin/data', methods=['GET'])
-def get_data():
+# 🆕 SAAS DASHBOARD DATA (Smart Filtering)
+@app.route('/dashboard/data', methods=['POST'])
+def get_dashboard_data():
     try:
-        restaurants = Restaurant.query.all()
-        sales = db.session.query(db.func.sum(Order.total_amount)).filter_by(status='Delivered').scalar() or 0
-        orders = Order.query.count()
-        return jsonify({"restaurants": [r.to_dict() for r in restaurants], "stats": {"sales": sales, "orders": orders}})
-    except:
-        return jsonify({"restaurants": [], "stats": {"sales": 0, "orders": 0}})
+        data = request.json
+        role = data.get('role')
+        user_res_id = data.get('restaurant_id')
 
-# 🆕 ADD NEW RESTAURANT (SUPER ADMIN POWER)
+        # 1. Base Queries
+        res_query = Restaurant.query
+        order_query = Order.query
+
+        # 🛡️ PRIVACY FILTER: Agar Manager hai, to sirf apna data dikhega
+        if role == 'manager' and user_res_id:
+            res_query = res_query.filter_by(id=user_res_id)
+            order_query = order_query.filter_by(restaurant_id=user_res_id)
+
+        restaurants = res_query.all()
+        orders = order_query.order_by(Order.created_at.desc()).all()
+
+        # 📊 ADVANCED MATHS (Reports)
+        now = datetime.utcnow()
+        today_start = datetime(now.year, now.month, now.day)
+        yesterday_start = today_start - timedelta(days=1)
+        last_7_days = today_start - timedelta(days=7)
+        last_30_days = today_start - timedelta(days=30)
+
+        def get_sales(start_date, end_date=None):
+            q = order_query.filter(Order.status == 'Delivered', Order.created_at >= start_date)
+            if end_date: q = q.filter(Order.created_at < end_date)
+            return db.session.query(func.sum(Order.total_amount)).select_from(Order).filter(Order.id.in_([o.id for o in q.all()])).scalar() or 0
+
+        stats = {
+            "sales_today": get_sales(today_start),
+            "sales_yesterday": get_sales(yesterday_start, today_start),
+            "sales_7_days": get_sales(last_7_days),
+            "sales_30_days": get_sales(last_30_days),
+            "total_orders": len(orders)
+        }
+
+        return jsonify({
+            "restaurants": [r.to_dict() for r in restaurants],
+            "orders": [o.to_dict() for o in orders],
+            "stats": stats
+        })
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)}), 500
+
+# -------------------- ⚙️ MANAGEMENT ROUTES --------------------
+
+# UPDATE PROFILE (Phone/Email)
+@app.route('/restaurant/update_profile', methods=['POST'])
+def update_profile():
+    data = request.json
+    res = Restaurant.query.get(data['id'])
+    if res:
+        res.phone = data.get('phone', res.phone)
+        res.email = data.get('email', res.email)
+        db.session.commit()
+        return jsonify({"message": "Profile Updated!"})
+    return jsonify({"error": "Error"}), 400
+
 @app.route('/admin/restaurant/add', methods=['POST'])
 def add_new_restaurant():
     try:
         data = request.json
         name = data.get('name')
         if not name: return jsonify({"error": "Name required"}), 400
-        
-        # Auto-generate ID
-        count = Restaurant.query.count()
-        new_id = f"res_{count + 1}_{str(uuid.uuid4())[:4]}"
-
+        new_id = f"res_{uuid.uuid4().hex[:6]}"
         new_res = Restaurant(id=new_id, name=name, menu=[])
         db.session.add(new_res)
         db.session.commit()
         return jsonify({"message": "Restaurant Added!", "id": new_id})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    except Exception as e: return jsonify({"error": str(e)}), 500
 
-# 🆕 ADD CATEGORY
 @app.route('/admin/category/add', methods=['POST'])
 def add_category():
     data = request.json
@@ -119,7 +227,6 @@ def add_category():
         return jsonify({"message": "Category Added"})
     return jsonify({"error": "Error"}), 400
 
-# 🆕 ADD ITEM TO CATEGORY
 @app.route('/admin/menu/add', methods=['POST'])
 def add_item():
     data = request.json
@@ -135,7 +242,6 @@ def add_item():
         return jsonify({"message": "Item Added"})
     return jsonify({"error": "Error"}), 400
 
-# 🆕 DELETE ITEM
 @app.route('/admin/menu/delete', methods=['POST'])
 def delete_item():
     data = request.json
@@ -151,18 +257,15 @@ def delete_item():
         return jsonify({"message": "Deleted"})
     return jsonify({"error": "Error"}), 400
 
-# --- APP APIs ---
+# -------------------- 📱 APP ROUTES --------------------
 @app.route('/customer/restaurants', methods=['GET'])
-def cust_res():
-    return jsonify([r.to_dict() for r in Restaurant.query.all()])
+def cust_res(): return jsonify([r.to_dict() for r in Restaurant.query.all()])
 
 @app.route('/restaurant/<rid>/orders', methods=['GET'])
-def res_orders(rid):
-    return jsonify([o.to_dict() for o in Order.query.filter_by(restaurant_id=rid).all()])
+def res_orders(rid): return jsonify([o.to_dict() for o in Order.query.filter_by(restaurant_id=rid).all()])
 
 @app.route('/drivers/orders/available', methods=['GET'])
-def driver_orders():
-    return jsonify([o.to_dict() for o in Order.query.filter(Order.status.in_(['Preparing','Ready'])).all()])
+def driver_orders(): return jsonify([o.to_dict() for o in Order.query.filter(Order.status.in_(['Preparing','Ready'])).all()])
 
 @app.route('/orders', methods=['POST'])
 def place_order():
@@ -174,10 +277,9 @@ def place_order():
         
         db.session.add(Order(id=oid, customer_id="cust_1", restaurant_id=data['restaurant_id'], total_amount=data['total_amount'], status="Pending"))
         for i in items: db.session.add(OrderItem(order_id=oid, name=i, price=0))
-        
         db.session.commit()
         return jsonify({"message": "Order Placed"})
-    except: return jsonify({"error": "Order Failed"}), 500
+    except: return jsonify({"error": "Failed"}), 500
 
 @app.route('/restaurant/orders/<oid>/status', methods=['PUT'])
 def update_status(oid):
