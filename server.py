@@ -17,35 +17,26 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = { "pool_pre_ping": True, "pool_recycle
 
 db = SQLAlchemy(app)
 
-# -------------------- 🗄️ DATABASE MODELS --------------------
+# -------------------- 🗄️ DATABASE MODELS (UPDATED FOR EMAIL) --------------------
 
-# 1. USER TABLE (Login System ke liye)
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.String(50), primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False) # 📧 Changed Username to Email
     password = db.Column(db.String(200), nullable=False)
-    role = db.Column(db.String(20), nullable=False) # 'super_admin' ya 'manager'
-    restaurant_id = db.Column(db.String(50), nullable=True) # Agar manager hai to kis restaurant ka?
+    role = db.Column(db.String(20), nullable=False) # 'super_admin' or 'manager'
+    restaurant_id = db.Column(db.String(50), nullable=True)
 
-# 2. RESTAURANT TABLE (Updated with Phone/Email)
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
     id = db.Column(db.String(50), primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    phone = db.Column(db.String(20), default="") # 🆕 Contact Number
-    email = db.Column(db.String(50), default="") # 🆕 Email Address
+    phone = db.Column(db.String(20), default="")
+    email = db.Column(db.String(50), default="")
     menu = db.Column(db.JSON, nullable=False) 
     def to_dict(self):
-        return {
-            "id": self.id, 
-            "name": self.name, 
-            "menu": self.menu,
-            "phone": self.phone,
-            "email": self.email
-        }
+        return {"id": self.id, "name": self.name, "menu": self.menu, "phone": self.phone, "email": self.email}
 
-# 3. ORDERS TABLE
 class Order(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.String(50), primary_key=True)
@@ -77,17 +68,16 @@ def init_db():
     with app.app_context():
         try:
             db.create_all()
-            
-            # 🌱 Create SUPER ADMIN if not exists
+            # 🌱 Create SUPER ADMIN (With Email)
             if not User.query.filter_by(role='super_admin').first():
                 print("🌱 Creating Super Admin...")
-                hashed_pw = generate_password_hash("admin123") # Default Password
-                admin = User(id="admin_1", username="admin", password=hashed_pw, role="super_admin")
+                hashed_pw = generate_password_hash("admin123")
+                # Default Admin Email: admin@agent50.com
+                admin = User(id="admin_1", email="admin@agent50.com", password=hashed_pw, role="super_admin")
                 db.session.add(admin)
                 db.session.commit()
-                print("✅ Super Admin Created: admin / admin123")
+                print("✅ Super Admin Created: admin@agent50.com / admin123")
 
-            # 🌱 Seed Restaurants if empty
             if not Restaurant.query.first():
                 print("🌱 Seeding Categories...")
                 menu1 = [{"category": "Biryani Special 🍛", "items": [{"name": "Chicken Biryani", "price": 250}]}]
@@ -99,31 +89,31 @@ def init_db():
         except Exception as e:
             print(f"❌ Database Error: {e}")
 
-# -------------------- 🔐 AUTH ROUTES (LOGIN) --------------------
+# -------------------- 🔐 LOGIN WITH EMAIL --------------------
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json
-    user = User.query.filter_by(username=data.get('username')).first()
+    # Look for User by EMAIL now
+    user = User.query.filter_by(email=data.get('email')).first()
     
     if user and check_password_hash(user.password, data.get('password')):
         return jsonify({
             "message": "Login Success",
             "role": user.role,
             "restaurant_id": user.restaurant_id,
-            "username": user.username
+            "email": user.email
         })
-    return jsonify({"error": "Invalid Username or Password"}), 401
+    return jsonify({"error": "Invalid Email or Password"}), 401
 
 @app.route('/admin/create_manager', methods=['POST'])
 def create_manager():
-    # Super Admin can create managers
     data = request.json
-    if User.query.filter_by(username=data['username']).first():
-        return jsonify({"error": "Username already exists"}), 400
+    if User.query.filter_by(email=data['email']).first():
+        return jsonify({"error": "Email already registered"}), 400
         
     new_user = User(
         id=str(uuid.uuid4()),
-        username=data['username'],
+        email=data['email'], # Saving Email
         password=generate_password_hash(data['password']),
         role="manager",
         restaurant_id=data['restaurant_id']
@@ -132,14 +122,13 @@ def create_manager():
     db.session.commit()
     return jsonify({"message": "Manager Created Successfully!"})
 
-# -------------------- 📊 DASHBOARD & REPORTS (The Brain) --------------------
+# -------------------- 📊 DASHBOARD & APP ROUTES --------------------
 @app.route('/')
 def home(): return "AGENT 50 SERVER LIVE 🚀"
 
 @app.route('/admin')
 def admin(): return render_template('admin.html')
 
-# 🆕 SAAS DASHBOARD DATA (Smart Filtering)
 @app.route('/dashboard/data', methods=['POST'])
 def get_dashboard_data():
     try:
@@ -147,11 +136,9 @@ def get_dashboard_data():
         role = data.get('role')
         user_res_id = data.get('restaurant_id')
 
-        # 1. Base Queries
         res_query = Restaurant.query
         order_query = Order.query
 
-        # 🛡️ PRIVACY FILTER: Agar Manager hai, to sirf apna data dikhega
         if role == 'manager' and user_res_id:
             res_query = res_query.filter_by(id=user_res_id)
             order_query = order_query.filter_by(restaurant_id=user_res_id)
@@ -159,7 +146,6 @@ def get_dashboard_data():
         restaurants = res_query.all()
         orders = order_query.order_by(Order.created_at.desc()).all()
 
-        # 📊 ADVANCED MATHS (Reports)
         now = datetime.utcnow()
         today_start = datetime(now.year, now.month, now.day)
         yesterday_start = today_start - timedelta(days=1)
@@ -184,13 +170,9 @@ def get_dashboard_data():
             "orders": [o.to_dict() for o in orders],
             "stats": stats
         })
-    except Exception as e:
-        print(e)
-        return jsonify({"error": str(e)}), 500
+    except Exception as e: return jsonify({"error": str(e)}), 500
 
-# -------------------- ⚙️ MANAGEMENT ROUTES --------------------
-
-# UPDATE PROFILE (Phone/Email)
+# -------------------- ⚙️ MANAGEMENT & APP APIS --------------------
 @app.route('/restaurant/update_profile', methods=['POST'])
 def update_profile():
     data = request.json
@@ -257,7 +239,6 @@ def delete_item():
         return jsonify({"message": "Deleted"})
     return jsonify({"error": "Error"}), 400
 
-# -------------------- 📱 APP ROUTES --------------------
 @app.route('/customer/restaurants', methods=['GET'])
 def cust_res(): return jsonify([r.to_dict() for r in Restaurant.query.all()])
 
@@ -274,7 +255,6 @@ def place_order():
         oid = str(uuid.uuid4())
         items = data.get('items', [])
         if isinstance(items, str): items = items.split(', ')
-        
         db.session.add(Order(id=oid, customer_id="cust_1", restaurant_id=data['restaurant_id'], total_amount=data['total_amount'], status="Pending"))
         for i in items: db.session.add(OrderItem(order_id=oid, name=i, price=0))
         db.session.commit()
