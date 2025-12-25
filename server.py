@@ -17,12 +17,13 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = { "pool_pre_ping": True, "pool_recycle
 
 db = SQLAlchemy(app)
 
-# -------------------- 🗄️ DATABASE MODELS (UPDATED FOR EMAIL) --------------------
+# -------------------- 🗄️ DATABASE MODELS (EMAIL BASED) --------------------
 
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.String(50), primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False) # 📧 Changed Username to Email
+    # ✅ KEY CHANGE: Username replaced with Email
+    email = db.Column(db.String(120), unique=True, nullable=False) 
     password = db.Column(db.String(200), nullable=False)
     role = db.Column(db.String(20), nullable=False) # 'super_admin' or 'manager'
     restaurant_id = db.Column(db.String(50), nullable=True)
@@ -77,15 +78,6 @@ def init_db():
                 db.session.add(admin)
                 db.session.commit()
                 print("✅ Super Admin Created: admin@agent50.com / admin123")
-
-            if not Restaurant.query.first():
-                print("🌱 Seeding Categories...")
-                menu1 = [{"category": "Biryani Special 🍛", "items": [{"name": "Chicken Biryani", "price": 250}]}]
-                menu2 = [{"category": "Burgers 🍔", "items": [{"name": "Zinger Burger", "price": 350}]}]
-                db.session.add(Restaurant(id="res_1", name="Biryani House", menu=menu1))
-                db.session.add(Restaurant(id="res_2", name="Burger King", menu=menu2))
-                db.session.commit()
-                print("✅ Database Ready!")
         except Exception as e:
             print(f"❌ Database Error: {e}")
 
@@ -93,7 +85,9 @@ def init_db():
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json
-    # Look for User by EMAIL now
+    print(f"🔐 Login Attempt: {data.get('email')}") # Debug Log
+    
+    # Look for User by EMAIL
     user = User.query.filter_by(email=data.get('email')).first()
     
     if user and check_password_hash(user.password, data.get('password')):
@@ -103,6 +97,7 @@ def login():
             "restaurant_id": user.restaurant_id,
             "email": user.email
         })
+    print("❌ Invalid Credentials")
     return jsonify({"error": "Invalid Email or Password"}), 401
 
 @app.route('/admin/create_manager', methods=['POST'])
