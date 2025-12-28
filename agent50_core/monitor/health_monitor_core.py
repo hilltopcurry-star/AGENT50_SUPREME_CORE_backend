@@ -1,16 +1,17 @@
 """
 health_monitor_core.py - Central Health Monitoring Engine for Agent 50.
 Orchestrates health checks, calculates health scores, and manages system state.
+(Fixed: Includes Anti-Circular Reference Sanitization)
 """
 
 import asyncio
 import logging
 import time
 import json
+import copy
 from typing import Dict, Any, List, Optional, Callable, Awaitable
 from datetime import datetime
 from enum import Enum
-import statistics
 
 # Import existing MemoryManager
 from agent50_core.memory.memory_manager import MemoryManager
@@ -95,16 +96,7 @@ class HealthMonitorCore:
                        interval: int = 60,
                        weight: float = 1.0,
                        check_type: CheckType = CheckType.APPLICATION):
-        """
-        Register a health check plugin.
-        
-        Args:
-            name: Unique identifier for the check
-            check_func: Async function returning HealthCheckResult
-            interval: How often to run (seconds)
-            weight: Importance in overall score (1.0 = standard, 5.0 = critical)
-            check_type: Category of check
-        """
+        """Register a health check plugin."""
         self.checks[name] = check_func
         self.check_configs[name] = {
             "interval": interval,
@@ -202,7 +194,7 @@ class HealthMonitorCore:
             "last_check": result.timestamp
         }
         
-        # If check failed, trigger alert immediately (Integration Point)
+        # If check failed, trigger alert immediately
         if not result.status:
             await self._trigger_alert(result)
 
@@ -223,10 +215,7 @@ class HealthMonitorCore:
             
             if latest.status:
                 earned_score += (100 * weight)
-            else:
-                # 0 score for failing check
-                pass
-                
+            
         if total_weight == 0:
             final_score = 100 # Default if no checks
         else:
@@ -244,8 +233,20 @@ class HealthMonitorCore:
             
         self.logger.debug(f"Health Recalculated: Score={final_score}, Status={self.current_health['status'].value}")
 
+    def _sanitize_data(self, data: Any) -> Any:
+        """
+        CRITICAL FIX: Ensure data is JSON serializable and free of circular references.
+        This prevents 'Circular reference detected' errors in logs.
+        """
+        try:
+            # This trick strips out non-serializable objects and breaks circular refs
+            return json.loads(json.dumps(data, default=str))
+        except Exception:
+            # Last resort fallback if data is truly broken
+            return str(data)
+
     async def _trigger_alert(self, result: HealthCheckResult):
-        """Push failure event to MemoryManager for AlertCorrelator (Group 7C)."""
+        """Push failure event to MemoryManager for AlertCorrelator."""
         alert_data = {
             "source": "health_monitor",
             "type": "availability",
@@ -256,10 +257,11 @@ class HealthMonitorCore:
             "timestamp": result.timestamp
         }
         
-        # We assume MemoryManager has a method to queue/record alerts or status updates
-        # This allows 7C (Alert Correlator) to pick it up via polling or shared memory
         try:
-            project_status = self.memory.get_project_status() or {}
+            # 1. Retrieve current status
+            raw_status = self.memory.get_project_status() or {}
+            # 2. Deep copy to break any reference links
+            project_status = copy.deepcopy(raw_status)
             
             if "monitoring" not in project_status:
                 project_status["monitoring"] = {}
@@ -267,7 +269,9 @@ class HealthMonitorCore:
             if "alerts_queue" not in project_status["monitoring"]:
                 project_status["monitoring"]["alerts_queue"] = []
                 
-            project_status["monitoring"]["alerts_queue"].append(alert_data)
+            # 3. Sanitize data before appending
+            safe_alert = self._sanitize_data(alert_data)
+            project_status["monitoring"]["alerts_queue"].append(safe_alert)
             
             # Keep queue size manageable
             if len(project_status["monitoring"]["alerts_queue"]) > 100:
@@ -288,11 +292,18 @@ class HealthMonitorCore:
                 "components": self.current_health["components"]
             }
             
-            project_status = self.memory.get_project_status() or {}
+            # 1. Retrieve current status
+            raw_status = self.memory.get_project_status() or {}
+            # 2. Deep copy to ensure we work on a clean object
+            project_status = copy.deepcopy(raw_status)
+
             if "monitoring" not in project_status:
                 project_status["monitoring"] = {}
                 
-            project_status["monitoring"].update(status_update)
+            # 3. Sanitize update payload
+            safe_update = self._sanitize_data(status_update)
+            project_status["monitoring"].update(safe_update)
+            
             self.memory.update_project_status(project_status)
             
         except Exception as e:
@@ -303,32 +314,23 @@ class HealthMonitorCore:
     async def record_health_degradation(self, data: Dict[str, Any]):
         """
         Callback for MetricsCollector (7B) to report threshold breaches.
-        Allows external components to influence health score.
         """
         component = data.get("component", "unknown")
         metric = data.get("metric", "unknown")
         
         self.logger.warning(f"Health Degradation Reported: {component} - {metric}")
         
-        # Impact score logic could go here
-        # For now, we log it and force a persistence update to show degraded state
-        
-        # You could dynamically create a 'virtual' check that fails
-        # to impact the score mathematically
-        self.current_health["score"] = max(0, self.current_health["score"] - 5) # Penalize score
+        # Penalize score
+        self.current_health["score"] = max(0, self.current_health["score"] - 5)
         if self.current_health["score"] < 90:
             self.current_health["status"] = HealthStatus.DEGRADED
             
         self._persist_state()
 
     async def check_component_health(self, component_name: str, timeout: int = 5) -> Dict[str, Any]:
-        """
-        On-demand check for a specific component.
-        Used by Auto-Remediation (7D) for pre/post condition checks.
-        """
+        """On-demand check for a specific component."""
         if component_name in self.checks:
             result = await self._execute_check(component_name)
-            # Return last result
             history = self.check_history.get(component_name, [])
             if history:
                 latest = history[-1]
