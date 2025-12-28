@@ -1,13 +1,13 @@
 """
 memory_manager.py - The Brain of Agent 50.
 Standard: DEEPSEEK SUPREME LEVEL.
-Features: Full Pattern Recognition + Dashboard Compatibility.
+Features: Full Pattern Recognition + Dashboard Compatibility + Auto-Healing Arguments.
 """
 
 import json
 import os
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Union
 import logging
 from datetime import datetime
 
@@ -103,7 +103,7 @@ class MemoryManager:
                 json.dump(self.cache[file_name], f, indent=2)
 
     # ==========================================================
-    #  THE MISSING PIECE (DASHBOARD FIX) - INSERTED HERE
+    #  DASHBOARD INTEGRATION
     # ==========================================================
     def save_project_structure(self, project_id: str, blueprint: Dict[str, Any]) -> bool:
         """
@@ -122,6 +122,8 @@ class MemoryManager:
             
             # 3. Register in DeepSeek Memory (project_status)
             project_name = blueprint.get("name", project_id)
+            
+            # Call update using the dictionary method (compatible call)
             self.update_project_status({
                 "status": "initialized",
                 "blueprint_path": str(file_path),
@@ -135,7 +137,7 @@ class MemoryManager:
             return False
 
     # ==========================================================
-    #  BELOW IS THE ORIGINAL DEEPSEEK LOGIC (UNTOUCHED)
+    #  CORE MEMORY LOGIC (UPDATED FOR STABILITY)
     # ==========================================================
 
     def add_architecture_pattern(self, pattern: Dict[str, Any]):
@@ -155,28 +157,70 @@ class MemoryManager:
         
         self._save_to_file("architecture_patterns")
 
-    def update_project_status(self, status: Dict[str, Any], project_name: Optional[str] = None):
-        """Update the status of a project."""
+    def update_project_status(self, project_id: Union[str, Dict[str, Any]], status: Any = None, **kwargs):
+        """
+        Update the status of a project.
+        
+        CRITICAL FIX: This method now handles **kwargs (like platform, error details)
+        and supports both Dictionary input (from Architect) and String input (from Monitor).
+        """
         if "project_status" not in self.cache:
              self.cache["project_status"] = {"projects": {}, "overall_stats": {}}
         
-        p_name = project_name or self.cache["project_status"].get("current_project")
+        # --- LOGIC TO HANDLE DIFFERENT INPUT TYPES ---
         
-        if p_name:
-            if p_name not in self.cache["project_status"]["projects"]:
-                self.cache["project_status"]["projects"][p_name] = {
-                    "created_at": datetime.now().isoformat(),
-                    "status_history": []
+        # Case 1: First argument is a Dict (Old Architect Style)
+        if isinstance(project_id, dict):
+            status_data = project_id
+            # Try to get name from kwargs or assume it's current
+            p_name = kwargs.get('project_name') or self.cache["project_status"].get("current_project")
+        
+        # Case 2: First argument is a String (New Monitor Style)
+        else:
+            p_name = project_id
+            # If status is just a string (e.g., "healthy"), convert to dict
+            if isinstance(status, str):
+                status_data = {
+                    "status": status,
+                    "timestamp": datetime.now().isoformat()
                 }
+            else:
+                status_data = status if status else {}
             
-            status["timestamp"] = datetime.now().isoformat()
-            self.cache["project_status"]["projects"][p_name]["current_status"] = status
-            self.cache["project_status"]["projects"][p_name]["status_history"].append(status)
-            self._save_to_file("project_status")
+            # Merge extra arguments (like 'platform') into the status data
+            # This prevents the 'unexpected keyword argument' crash
+            if kwargs:
+                status_data.update(kwargs)
+
+        # Fallback if no name found
+        if not p_name:
+            p_name = "unknown_project"
+
+        # --- CORE UPDATE LOGIC ---
+        
+        if p_name not in self.cache["project_status"]["projects"]:
+            self.cache["project_status"]["projects"][p_name] = {
+                "created_at": datetime.now().isoformat(),
+                "status_history": []
+            }
+        
+        # Ensure timestamp exists
+        if "timestamp" not in status_data:
+            status_data["timestamp"] = datetime.now().isoformat()
+
+        # Update Memory
+        self.cache["project_status"]["projects"][p_name]["current_status"] = status_data
+        self.cache["project_status"]["projects"][p_name]["status_history"].append(status_data)
+        
+        # Trim history if too long
+        if len(self.cache["project_status"]["projects"][p_name]["status_history"]) > 50:
+             self.cache["project_status"]["projects"][p_name]["status_history"] = \
+                 self.cache["project_status"]["projects"][p_name]["status_history"][-50:]
+
+        self._save_to_file("project_status")
 
     def get_project_status(self, project_name: Optional[str] = None):
         """Get current status of a project."""
-        # Dashboard ke liye basic return
         return self.cache.get("project_status", {})
 
     def record_deployment_failure(self, project_name, platform, error, logs):
