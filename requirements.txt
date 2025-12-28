@@ -11,3 +11,4 @@ aiofiles
 google-generativeai
 psutil
 aiohttp
+networkx
