@@ -1,0 +1,15 @@
+{
+    "id": "proj_1766237780_500c1c",
+    "name": "Project_proj_1766237780_500c1c",
+    "type": "python",
+    "description": "A fully functional Snake Game using Pygame. Features: Green snake, Red food, Score display, and Game Over screen.",
+    "created_at": 1766237781.1968384,
+    "status": "blueprint_ready",
+    "stack": "Error_Fallback",
+    "architecture": {
+        "files": [
+            "main.py",
+            "error_log.txt"
+        ]
+    }
+}

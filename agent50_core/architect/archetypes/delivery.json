@@ -1,0 +1,22 @@
+{
+    "name": "Delivery Supreme",
+    "description": "Full-stack food/item delivery application",
+    "stack": {
+        "backend": "Flask (Python)",
+        "frontend": "HTML/Tailwind (Jinja2)",
+        "database": "SQLite (Dev) / PostgreSQL (Prod)",
+        "realtime": "Socket.IO"
+    },
+    "features": [
+        "User Authentication (Login/Signup)",
+        "Restaurant/Store Listing",
+        "Cart & Checkout",
+        "Live Order Tracking (Maps)",
+        "Driver Dashboard",
+        "Admin Panel"
+    ],
+    "structure": {
+        "required_folders": ["templates", "static", "blueprints", "models"],
+        "required_files": ["app.py", "requirements.txt", "Procfile"]
+    }
+}

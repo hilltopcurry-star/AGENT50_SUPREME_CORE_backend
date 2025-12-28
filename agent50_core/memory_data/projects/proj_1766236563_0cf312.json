@@ -1,0 +1,15 @@
+{
+    "id": "proj_1766236563_0cf312",
+    "name": "Project_proj_1766236563_0cf312",
+    "type": "web_app",
+    "description": "string",
+    "created_at": 1766236563.369051,
+    "status": "blueprint_ready",
+    "stack": "Error_Fallback",
+    "architecture": {
+        "files": [
+            "main.py",
+            "error_log.txt"
+        ]
+    }
+}

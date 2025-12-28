@@ -1,0 +1,159 @@
+{
+  "name": "ecommerce_archetype",
+  "description": "E-commerce platform with product catalog, shopping cart, and payment processing",
+  "type": "ecommerce",
+  "components": {
+    "frontend": {
+      "framework": "nextjs",
+      "language": "typescript",
+      "rendering": "ssr",
+      "state_management": "zustand",
+      "ui_library": "shadcn/ui",
+      "styling": "tailwindcss"
+    },
+    "backend": {
+      "framework": "fastapi",
+      "language": "python",
+      "authentication": "jwt",
+      "orm": "sqlalchemy",
+      "caching": "redis",
+      "search": "elasticsearch"
+    },
+    "database": {
+      "type": "postgres",
+      "orm": "sqlalchemy",
+      "full_text_search": true,
+      "replication": false
+    },
+    "authentication": {
+      "enabled": true,
+      "method": "jwt",
+      "guest_checkout": true,
+      "social_login": ["google", "facebook"]
+    },
+    "payments": {
+      "enabled": true,
+      "provider": "stripe",
+      "payment_methods": ["card", "paypal"],
+      "refunds": true
+    },
+    "inventory": {
+      "enabled": true,
+      "sku_management": true,
+      "stock_tracking": true,
+      "low_stock_alerts": true
+    },
+    "shipping": {
+      "enabled": true,
+      "calculators": true,
+      "tracking": true,
+      "multiple_providers": true
+    }
+  },
+  "dependencies": {
+    "backend": [
+      {"name": "fastapi", "version": "0.104.1"},
+      {"name": "sqlalchemy", "version": "2.0.23"},
+      {"name": "psycopg2-binary", "version": "2.9.9"},
+      {"name": "redis", "version": "5.0.1"},
+      {"name": "stripe", "version": "7.14.0"},
+      {"name": "python-jose", "version": "3.3.0"},
+      {"name": "celery", "version": "5.3.4"},
+      {"name": "elasticsearch", "version": "8.11.0"},
+      {"name": "boto3", "version": "1.34.0"},
+      {"name": "pillow", "version": "10.1.0"}
+    ],
+    "frontend": [
+      {"name": "next", "version": "14.0.0"},
+      {"name": "react", "version": "18.2.0"},
+      {"name": "react-dom", "version": "18.2.0"},
+      {"name": "typescript", "version": "5.3.0"},
+      {"name": "tailwindcss", "version": "3.3.0"},
+      {"name": "zustand", "version": "4.4.7"},
+      {"name": "axios", "version": "1.6.0"},
+      {"name": "stripe-js", "version": "2.1.0"},
+      {"name": "react-hook-form", "version": "7.48.0"},
+      {"name": "framer-motion", "version": "10.16.0"}
+    ],
+    "database": [
+      {"name": "postgresql", "version": "15"}
+    ]
+  },
+  "api_endpoints": [
+    "/api/v1/products",
+    "/api/v1/products/{id}",
+    "/api/v1/products/search",
+    "/api/v1/categories",
+    "/api/v1/cart",
+    "/api/v1/cart/items",
+    "/api/v1/orders",
+    "/api/v1/orders/{id}",
+    "/api/v1/payments/create-intent",
+    "/api/v1/payments/webhook",
+    "/api/v1/shipping/calculate",
+    "/api/v1/users/addresses",
+    "/api/v1/reviews"
+  ],
+  "database_schema": {
+    "tables": [
+      {
+        "name": "products",
+        "columns": [
+          {"name": "id", "type": "uuid", "primary_key": true},
+          {"name": "name", "type": "varchar(200)", "nullable": false},
+          {"name": "description", "type": "text"},
+          {"name": "price", "type": "decimal(10,2)", "nullable": false},
+          {"name": "sku", "type": "varchar(50)", "unique": true},
+          {"name": "stock_quantity", "type": "integer", "default": 0},
+          {"name": "category_id", "type": "uuid", "foreign_key": "categories.id"},
+          {"name": "image_url", "type": "varchar(500)"},
+          {"name": "is_active", "type": "boolean", "default": true},
+          {"name": "created_at", "type": "timestamp", "default": "now()"}
+        ]
+      },
+      {
+        "name": "orders",
+        "columns": [
+          {"name": "id", "type": "uuid", "primary_key": true},
+          {"name": "user_id", "type": "uuid", "foreign_key": "users.id"},
+          {"name": "order_number", "type": "varchar(20)", "unique": true},
+          {"name": "status", "type": "varchar(20)", "default": "pending"},
+          {"name": "total_amount", "type": "decimal(10,2)", "nullable": false},
+          {"name": "shipping_address", "type": "jsonb"},
+          {"name": "billing_address", "type": "jsonb"},
+          {"name": "stripe_payment_intent_id", "type": "varchar(100)"},
+          {"name": "notes", "type": "text"},
+          {"name": "created_at", "type": "timestamp", "default": "now()"},
+          {"name": "updated_at", "type": "timestamp", "default": "now()"}
+        ]
+      }
+    ]
+  },
+  "deployment": {
+    "platform": "render",
+    "requirements": ["requirements.txt", "Procfile", "runtime.txt", "Dockerfile"],
+    "build_command": "pip install -r requirements.txt",
+    "start_command": "gunicorn main:app --bind 0.0.0.0:$PORT",
+    "health_check_path": "/health",
+    "auto_deploy": true,
+    "scale": {"min": 1, "max": 3}
+  },
+  "env_variables": {
+    "required": [
+      "DATABASE_URL",
+      "SECRET_KEY",
+      "STRIPE_SECRET_KEY",
+      "STRIPE_WEBHOOK_SECRET",
+      "REDIS_URL",
+      "AWS_ACCESS_KEY_ID",
+      "AWS_SECRET_ACCESS_KEY",
+      "S3_BUCKET_NAME"
+    ],
+    "optional": [
+      "ELASTICSEARCH_URL",
+      "SENTRY_DSN",
+      "EMAIL_HOST",
+      "SHIPPING_API_KEY"
+    ]
+  }
+}

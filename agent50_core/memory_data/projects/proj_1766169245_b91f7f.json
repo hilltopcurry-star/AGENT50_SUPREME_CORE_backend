@@ -1,0 +1,15 @@
+{
+    "id": "proj_1766169245_b91f7f",
+    "name": "Project_proj_1766169245_b91f7f",
+    "type": "python",
+    "description": "A fully playable Snake game using Pygame library. It should have a score counter, game over screen, and smooth controls.",
+    "created_at": 1766169245.624236,
+    "status": "blueprint_ready",
+    "stack": "Error_Fallback",
+    "architecture": {
+        "files": [
+            "main.py",
+            "error_log.txt"
+        ]
+    }
+}

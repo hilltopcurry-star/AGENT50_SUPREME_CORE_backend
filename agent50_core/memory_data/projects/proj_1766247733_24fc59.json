@@ -1,0 +1,19 @@
+{
+    "id": "proj_1766247733_24fc59",
+    "name": "Project_proj_1766247733_24fc59",
+    "type": "web_app",
+    "description": "A complete Task Management App using Flask and SQLite. Features: 1) Add Task, 2) Delete Task, 3) Mark Complete. UI: Must use Bootstrap 5 for a modern look (Cards, Colors). Database: Use SQLAlchemy. Structure: app.py, models.py, templates/index.html.",
+    "created_at": 1766247741.3264415,
+    "status": "blueprint_ready",
+    "stack": "Flask + SQLite + SQLAlchemy + Bootstrap 5",
+    "architecture": {
+        "files": [
+            "app.py",
+            "models.py",
+            "requirements.txt",
+            "templates/index.html",
+            "static/css/style.css",
+            "static/js/script.js"
+        ]
+    }
+}

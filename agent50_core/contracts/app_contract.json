@@ -1,0 +1,17 @@
+{
+    "delivery": {
+        "mandatory_files": ["app.py", "models.py", "routes.py", "requirements.txt"],
+        "mandatory_tables": ["User", "Product", "Order", "Cart"],
+        "required_env_vars": ["SECRET_KEY", "DATABASE_URL", "STRIPE_API_KEY"]
+    },
+    "saas": {
+        "mandatory_files": ["run.py", "config.py", "requirements.txt"],
+        "mandatory_tables": ["User", "Subscription", "Payment"],
+        "required_env_vars": ["SECRET_KEY", "DATABASE_URL"]
+    },
+    "dashboard": {
+        "mandatory_files": ["app.py", "requirements.txt"],
+        "mandatory_tables": ["User", "Analytics"],
+        "required_env_vars": ["SECRET_KEY"]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "id": "proj_1766239872_00ffa4",
+    "name": "Project_proj_1766239872_00ffa4",
+    "type": "python",
+    "description": "A modern GUI Calculator using Python Tkinter. It should have buttons for numbers 0-9, Add, Subtract, Multiply, Divide, and Clear. The design should be clean.",
+    "created_at": 1766239872.909028,
+    "status": "blueprint_ready",
+    "stack": "Error_Fallback",
+    "architecture": {
+        "files": [
+            "main.py",
+            "error_log.txt"
+        ]
+    }
+}

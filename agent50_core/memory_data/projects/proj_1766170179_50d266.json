@@ -1,0 +1,15 @@
+{
+    "id": "proj_1766170179_50d266",
+    "name": "Project_proj_1766170179_50d266",
+    "type": "python",
+    "description": "Create a classic Snake Game using Python and Pygame. Include a scoring system and game over logic.",
+    "created_at": 1766170179.3309443,
+    "status": "blueprint_ready",
+    "stack": "Error_Fallback",
+    "architecture": {
+        "files": [
+            "main.py",
+            "error_log.txt"
+        ]
+    }
+}

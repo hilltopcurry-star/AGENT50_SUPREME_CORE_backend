@@ -1,0 +1,1571 @@
+{
+  "current_project": null,
+  "projects": {
+    "Project proj_1766160575_4ddad9": {
+      "created_at": "2025-12-19T23:09:35.283436",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766160575_4ddad9.json",
+          "type": "python",
+          "timestamp": "2025-12-19T23:09:35.283436"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766160575_4ddad9.json",
+        "type": "python",
+        "timestamp": "2025-12-19T23:09:35.283436"
+      }
+    },
+    "Project proj_1766160577_34e439": {
+      "created_at": "2025-12-19T23:09:37.238917",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766160577_34e439.json",
+          "type": "python",
+          "timestamp": "2025-12-19T23:09:37.238917"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766160577_34e439.json",
+        "type": "python",
+        "timestamp": "2025-12-19T23:09:37.238917"
+      }
+    },
+    "Project_proj_1766169245_b91f7f": {
+      "created_at": "2025-12-20T01:34:05.624236",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766169245_b91f7f.json",
+          "type": "python",
+          "timestamp": "2025-12-20T01:34:05.624236"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766169245_b91f7f.json",
+        "type": "python",
+        "timestamp": "2025-12-20T01:34:05.624236"
+      }
+    },
+    "Project_proj_1766170179_50d266": {
+      "created_at": "2025-12-20T01:49:39.337131",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766170179_50d266.json",
+          "type": "python",
+          "timestamp": "2025-12-20T01:49:39.337131"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766170179_50d266.json",
+        "type": "python",
+        "timestamp": "2025-12-20T01:49:39.337131"
+      }
+    },
+    "Project_proj_1766236563_0cf312": {
+      "created_at": "2025-12-20T20:16:03.385825",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766236563_0cf312.json",
+          "type": "web_app",
+          "timestamp": "2025-12-20T20:16:03.385825"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766236563_0cf312.json",
+        "type": "web_app",
+        "timestamp": "2025-12-20T20:16:03.385825"
+      }
+    },
+    "Project_proj_1766237780_500c1c": {
+      "created_at": "2025-12-20T20:36:21.196838",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766237780_500c1c.json",
+          "type": "python",
+          "timestamp": "2025-12-20T20:36:21.196838"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766237780_500c1c.json",
+        "type": "python",
+        "timestamp": "2025-12-20T20:36:21.196838"
+      }
+    },
+    "Project_proj_1766239872_00ffa4": {
+      "created_at": "2025-12-20T21:11:12.909028",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766239872_00ffa4.json",
+          "type": "python",
+          "timestamp": "2025-12-20T21:11:12.909028"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766239872_00ffa4.json",
+        "type": "python",
+        "timestamp": "2025-12-20T21:11:12.909028"
+      }
+    },
+    "Project_proj_1766241098_e8098b": {
+      "created_at": "2025-12-20T21:31:38.509202",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766241098_e8098b.json",
+          "type": "web_app",
+          "timestamp": "2025-12-20T21:31:38.509202"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766241098_e8098b.json",
+        "type": "web_app",
+        "timestamp": "2025-12-20T21:31:38.509202"
+      }
+    },
+    "Project_proj_1766241116_da0237": {
+      "created_at": "2025-12-20T21:31:56.413836",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766241116_da0237.json",
+          "type": "web_app",
+          "timestamp": "2025-12-20T21:31:56.413836"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766241116_da0237.json",
+        "type": "web_app",
+        "timestamp": "2025-12-20T21:31:56.413836"
+      }
+    },
+    "Project_proj_1766246762_9f2337": {
+      "created_at": "2025-12-20T23:06:04.530329",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766246762_9f2337.json",
+          "type": "web_app",
+          "timestamp": "2025-12-20T23:06:04.530329"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766246762_9f2337.json",
+        "type": "web_app",
+        "timestamp": "2025-12-20T23:06:04.530329"
+      }
+    },
+    "Project_proj_1766247733_24fc59": {
+      "created_at": "2025-12-20T23:22:21.326441",
+      "status_history": [
+        {
+          "status": "initialized",
+          "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766247733_24fc59.json",
+          "type": "web_app",
+          "timestamp": "2025-12-20T23:22:21.326441"
+        }
+      ],
+      "current_status": {
+        "status": "initialized",
+        "blueprint_path": "C:\\Users\\ADMIN\\Desktop\\AGENT50_SUPREME_CORE\\agent50_core\\memory_data\\projects\\proj_1766247733_24fc59.json",
+        "type": "web_app",
+        "timestamp": "2025-12-20T23:22:21.326441"
+      }
+    }
+  },
+  "overall_stats": {
+    "total_projects": 0,
+    "successful_deployments": 0,
+    "failed_deployments": 0
+  },
+  "monitoring": {
+    "remediation_playbooks": {
+      "high_cpu_usage": {
+        "name": "High CPU Usage Remediation",
+        "description": "Remediate high CPU usage on services",
+        "trigger_conditions": [
+          {
+            "metric": "cpu_percent",
+            "operator": ">",
+            "value": 85,
+            "duration": "5m"
+          }
+        ],
+        "actions": [
+          {
+            "type": "scale_resources",
+            "target": "affected_service",
+            "parameters": {
+              "cpu_increment": 0.5,
+              "memory_increment": "512Mi"
+            },
+            "risk": "medium",
+            "pre_conditions": [
+              {
+                "type": "health_check",
+                "target": "affected_service",
+                "status": "healthy"
+              }
+            ]
+          },
+          {
+            "type": "restart_service",
+            "target": "affected_service",
+            "parameters": {
+              "grace_period": 30
+            },
+            "risk": "high",
+            "pre_conditions": [
+              {
+                "type": "can_restart",
+                "target": "affected_service"
+              }
+            ]
+          }
+        ],
+        "verification": {
+          "metrics": [
+            "cpu_percent",
+            "memory_percent"
+          ],
+          "thresholds": {
+            "cpu_percent": 70,
+            "duration": "3m"
+          },
+          "health_checks": [
+            "/health",
+            "/metrics"
+          ]
+        }
+      },
+      "high_memory_usage": {
+        "name": "High Memory Usage Remediation",
+        "description": "Remediate high memory usage on services",
+        "trigger_conditions": [
+          {
+            "metric": "memory_percent",
+            "operator": ">",
+            "value": 90,
+            "duration": "5m"
+          }
+        ],
+        "actions": [
+          {
+            "type": "scale_resources",
+            "target": "affected_service",
+            "parameters": {
+              "memory_increment": "1Gi",
+              "cpu_increment": 0.25
+            },
+            "risk": "medium"
+          },
+          {
+            "type": "cache_clear",
+            "target": "affected_service",
+            "parameters": {
+              "cache_type": "all"
+            },
+            "risk": "low"
+          }
+        ],
+        "verification": {
+          "metrics": [
+            "memory_percent"
+          ],
+          "thresholds": {
+            "memory_percent": 80,
+            "duration": "3m"
+          }
+        }
+      },
+      "database_connection_exhausted": {
+        "name": "Database Connection Pool Exhaustion",
+        "description": "Remediate database connection pool exhaustion",
+        "trigger_conditions": [
+          {
+            "metric": "database_connections",
+            "operator": ">",
+            "value": 90,
+            "duration": "2m"
+          }
+        ],
+        "actions": [
+          {
+            "type": "connection_pool_adjust",
+            "target": "database",
+            "parameters": {
+              "max_connections_increment": 20
+            },
+            "risk": "low"
+          },
+          {
+            "type": "database_maintenance",
+            "target": "database",
+            "parameters": {
+              "action": "kill_idle_connections",
+              "idle_timeout": 300
+            },
+            "risk": "medium"
+          }
+        ],
+        "verification": {
+          "metrics": [
+            "database_connections",
+            "database_waiting_connections"
+          ],
+          "thresholds": {
+            "database_connections": 70,
+            "duration": "2m"
+          }
+        }
+      },
+      "service_unavailable": {
+        "name": "Service Unavailable",
+        "description": "Remediate service availability issues",
+        "trigger_conditions": [
+          {
+            "metric": "endpoint_availability",
+            "operator": "<",
+            "value": 0.95,
+            "duration": "1m"
+          }
+        ],
+        "actions": [
+          {
+            "type": "restart_service",
+            "target": "affected_service",
+            "parameters": {
+              "grace_period": 10,
+              "force": true
+            },
+            "risk": "high"
+          }
+        ],
+        "verification": {
+          "health_checks": [
+            "/health",
+            "/ready",
+            "/live"
+          ],
+          "required_success_rate": 0.99,
+          "duration": "2m"
+        }
+      },
+      "deployment_failure": {
+        "name": "Deployment Failure Rollback",
+        "description": "Rollback failed deployment",
+        "trigger_conditions": [
+          {
+            "type": "deployment",
+            "status": "failed"
+          }
+        ],
+        "actions": [
+          {
+            "type": "deployment_rollback",
+            "target": "deployment",
+            "parameters": {
+              "rollback_to": "previous_version"
+            },
+            "risk": "medium"
+          }
+        ],
+        "verification": {
+          "health_checks": [
+            "/health"
+          ],
+          "deployment_status": "healthy",
+          "duration": "5m"
+        }
+      }
+    },
+    "alerts": [
+      {
+        "id": "metric_alert_endpoint_response_time_1766160349",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:05:49.200115",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766160381",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:06:21.527637",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766160411",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:06:51.527494",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [getaddrinfo failed]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766160443",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:07:23.802046",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766160476",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:07:56.100585",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766160508",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:08:28.387424",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766160540",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:09:00.697509",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766160572",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-19T23:09:32.991353",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766168940",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:29:00.993089",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766168973",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:29:33.286141",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169005",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:30:05.604025",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169037",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:30:37.891264",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169070",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:31:10.176423",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169102",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:31:42.503891",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169134",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:32:14.815572",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169167",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:32:47.122397",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169199",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:33:19.411064",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766169231",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:33:51.722410",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766170098",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:48:18.202883",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766170130",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:48:50.528843",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766170162",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T01:49:22.798684",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766236388",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:13:08.836979",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766236421",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:13:41.122326",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766236453",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:14:13.421392",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766236485",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:14:45.719814",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766236517",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:15:17.990273",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766236550",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:15:50.269616",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237544",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:32:24.013119",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237576",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:32:56.310601",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237608",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:33:28.597873",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237640",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:34:00.896424",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237673",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:34:33.167164",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237705",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:35:05.482000",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237737",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:35:37.739480",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766237770",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T20:36:10.038098",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239642",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:07:22.854598",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239675",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:07:55.139413",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239707",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:08:27.424782",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239739",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:08:59.700697",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239771",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:09:31.985241",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239804",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:10:04.312919",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239836",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:10:36.616704",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239868",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:11:08.931655",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239901",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:11:41.232249",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239933",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:12:13.538344",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239965",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:12:45.858443",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766239998",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:13:18.131313",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240030",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:13:50.433344",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240062",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:14:22.716763",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240095",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:14:55.016221",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240127",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:15:27.344941",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240159",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:15:59.667597",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240191",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:16:31.976171",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240224",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:17:04.243624",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240256",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:17:36.550336",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240288",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:18:08.857615",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240321",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:18:41.138386",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240353",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:19:13.724833",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240386",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:19:46.977929",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240419",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:20:19.234244",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240451",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:20:51.570159",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240483",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:21:23.855732",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240516",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:21:56.162619",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240548",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:22:28.444274",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240580",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:23:00.754927",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240613",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:23:33.060363",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240645",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:24:05.319624",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240677",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:24:37.612767",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240709",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:25:09.940279",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240742",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:25:42.261632",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240774",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:26:14.531038",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240806",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:26:46.855357",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240839",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:27:19.131906",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240871",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:27:51.422275",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240903",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:28:23.721637",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240936",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:28:56.016246",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766240968",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:29:28.305533",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766241000",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:30:00.601872",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766241032",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:30:32.899063",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766241065",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:31:05.202614",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766241097",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T21:31:37.761483",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766246680",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T23:04:40.352832",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766246712",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T23:05:12.607079",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766246744",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T23:05:44.892516",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766247665",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T23:21:05.396982",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766247697",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T23:21:37.664214",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      },
+      {
+        "id": "metric_alert_endpoint_response_time_1766247729",
+        "metric": "endpoint_response_time",
+        "value": 3000.0,
+        "threshold": 3000,
+        "level": "critical",
+        "timestamp": "2025-12-20T23:22:09.948697",
+        "metadata": {
+          "error": "Cannot connect to host localhost:8080 ssl:default [The remote computer refused the network connection]",
+          "url": "http://localhost:8080"
+        },
+        "type": "threshold_exceeded"
+      }
+    ],
+    "health_score": 85,
+    "health_status": "degraded",
+    "last_update": "2025-12-20T23:22:09.948697",
+    "components": {},
+    "metrics": {
+      "summary": {
+        "total_metrics": 7,
+        "by_type": {
+          "infrastructure": 5,
+          "synthetic": 2
+        },
+        "by_source": {
+          "system": 5,
+          "http_endpoint": 2
+        },
+        "health_status": "critical",
+        "alerts": [],
+        "critical_alerts": 1,
+        "warning_alerts": 0
+      },
+      "state": {
+        "metrics_registered": [
+          "cpu_percent",
+          "memory_percent",
+          "disk_usage_percent",
+          "network_bytes_sent",
+          "network_bytes_recv",
+          "endpoint_response_time",
+          "endpoint_availability"
+        ],
+        "collection_status": {
+          "running": true,
+          "tasks_active": 7,
+          "last_updated": "2025-12-20T21:27:20.597799"
+        },
+        "baselines": {}
+      },
+      "last_updated": "2025-12-20T21:27:20.597799"
+    }
+  }
+}

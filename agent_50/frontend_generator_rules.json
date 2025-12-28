@@ -1,0 +1,92 @@
+{
+  "version": "1.0.0",
+  "purpose": "Universal Frontend Auto-Generation Rules",
+  "non_negotiable": true,
+
+  "principle": {
+    "no_manual_frontend": true,
+    "no_placeholder_ui": true,
+    "no_temporary_files": true,
+    "rules_over_projects": true
+  },
+
+  "input_contract": {
+    "required_from_backend": [
+      "entities",
+      "relationships",
+      "roles",
+      "states",
+      "permissions",
+      "api_endpoints"
+    ]
+  },
+
+  "role_based_ui": {
+    "admin": {
+      "layout": "dashboard",
+      "components": ["tables", "charts", "approval_panels", "logs"],
+      "default_pages": ["overview", "users", "settings"]
+    },
+    "restaurant_owner": {
+      "layout": "management",
+      "components": ["menu_editor", "order_queue", "earnings"],
+      "default_pages": ["orders", "menu", "profile"]
+    },
+    "customer": {
+      "layout": "consumer",
+      "components": ["list", "cart", "checkout", "tracking"],
+      "default_pages": ["home", "search", "orders"]
+    },
+    "driver": {
+      "layout": "utility",
+      "components": ["task_list", "map", "status_toggle"],
+      "default_pages": ["deliveries", "navigation"]
+    }
+  },
+
+  "screen_generation_rules": {
+    "list_view": {
+      "trigger": "GET endpoint returns array",
+      "ui": ["table_or_cards", "search", "pagination"]
+    },
+    "detail_view": {
+      "trigger": "GET endpoint with ID",
+      "ui": ["readonly_fields", "status_badge"]
+    },
+    "form_view": {
+      "trigger": ["POST", "PUT"],
+      "ui": ["validated_form", "submit_handler", "error_state"]
+    }
+  },
+
+  "state_handling": {
+    "loading": "skeleton_ui",
+    "error": "retry_with_message",
+    "empty": "empty_state_message",
+    "success": "toast_notification"
+  },
+
+  "data_binding": {
+    "api_binding": "automatic",
+    "auth_header": "jwt_from_storage",
+    "refresh_strategy": "on_mutation"
+  },
+
+  "file_management_policy": {
+    "replace_old_files": true,
+    "no_duplicate_components": true,
+    "delete_obsolete_files": true
+  },
+
+  "deployment_rules": {
+    "default_web": "Vercel",
+    "default_mobile": "Expo/Firebase",
+    "auto_env_binding": true
+  },
+
+  "memory_rules": {
+    "persist_rules": true,
+    "persist_generated_files": true,
+    "never_reset_without_explicit_command": true
+  }
+}

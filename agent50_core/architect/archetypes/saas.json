@@ -1,0 +1,184 @@
+{
+  "name": "saas_archetype",
+  "description": "Standard SaaS application with authentication, subscription, and multi-tenancy",
+  "type": "saas",
+  "components": {
+    "frontend": {
+      "framework": "react",
+      "language": "typescript",
+      "state_management": "zustand",
+      "routing": "react-router-dom",
+      "ui_library": "shadcn/ui",
+      "styling": "tailwindcss"
+    },
+    "backend": {
+      "framework": "fastapi",
+      "language": "python",
+      "authentication": "jwt",
+      "orm": "sqlalchemy",
+      "validation": "pydantic",
+      "background_tasks": "celery"
+    },
+    "database": {
+      "type": "postgres",
+      "orm": "sqlalchemy",
+      "migrations": "alembic",
+      "connection_pooling": true
+    },
+    "authentication": {
+      "enabled": true,
+      "method": "jwt",
+      "oauth_providers": ["google", "github"],
+      "session_management": true
+    },
+    "payments": {
+      "enabled": true,
+      "provider": "stripe",
+      "subscriptions": true,
+      "invoices": true
+    },
+    "notifications": {
+      "enabled": true,
+      "email": true,
+      "in_app": true,
+      "push": false
+    },
+    "analytics": {
+      "enabled": true,
+      "user_tracking": true,
+      "event_logging": true
+    }
+  },
+  "dependencies": {
+    "backend": [
+      {"name": "fastapi", "version": "0.104.1"},
+      {"name": "uvicorn", "version": "0.24.0"},
+      {"name": "sqlalchemy", "version": "2.0.23"},
+      {"name": "alembic", "version": "1.12.1"},
+      {"name": "psycopg2-binary", "version": "2.9.9"},
+      {"name": "pydantic", "version": "2.5.0"},
+      {"name": "python-jose", "version": "3.3.0"},
+      {"name": "passlib", "version": "1.7.4"},
+      {"name": "python-multipart", "version": "0.0.6"},
+      {"name": "celery", "version": "5.3.4"},
+      {"name": "redis", "version": "5.0.1"}
+    ],
+    "frontend": [
+      {"name": "react", "version": "18.2.0"},
+      {"name": "react-dom", "version": "18.2.0"},
+      {"name": "typescript", "version": "5.3.0"},
+      {"name": "vite", "version": "5.0.0"},
+      {"name": "axios", "version": "1.6.0"},
+      {"name": "react-router-dom", "version": "6.20.0"},
+      {"name": "zustand", "version": "4.4.7"},
+      {"name": "tailwindcss", "version": "3.3.0"},
+      {"name": "@tanstack/react-query", "version": "5.8.0"},
+      {"name": "date-fns", "version": "3.0.0"}
+    ],
+    "database": [
+      {"name": "postgresql", "version": "15"}
+    ]
+  },
+  "api_endpoints": [
+    "/api/v1/auth/login",
+    "/api/v1/auth/register",
+    "/api/v1/auth/logout",
+    "/api/v1/auth/refresh",
+    "/api/v1/users/me",
+    "/api/v1/users/{id}",
+    "/api/v1/subscriptions",
+    "/api/v1/payments/webhook",
+    "/api/v1/notifications",
+    "/api/v1/analytics/events"
+  ],
+  "database_schema": {
+    "tables": [
+      {
+        "name": "users",
+        "columns": [
+          {"name": "id", "type": "uuid", "primary_key": true},
+          {"name": "email", "type": "varchar(255)", "unique": true, "nullable": false},
+          {"name": "password_hash", "type": "varchar(255)", "nullable": false},
+          {"name": "name", "type": "varchar(100)", "nullable": true},
+          {"name": "is_active", "type": "boolean", "default": true},
+          {"name": "is_verified", "type": "boolean", "default": false},
+          {"name": "created_at", "type": "timestamp", "default": "now()"},
+          {"name": "updated_at", "type": "timestamp", "default": "now()"}
+        ]
+      },
+      {
+        "name": "subscriptions",
+        "columns": [
+          {"name": "id", "type": "uuid", "primary_key": true},
+          {"name": "user_id", "type": "uuid", "foreign_key": "users.id"},
+          {"name": "stripe_subscription_id", "type": "varchar(100)", "unique": true},
+          {"name": "plan", "type": "varchar(50)", "nullable": false},
+          {"name": "status", "type": "varchar(20)", "nullable": false},
+          {"name": "current_period_start", "type": "timestamp"},
+          {"name": "current_period_end", "type": "timestamp"},
+          {"name": "cancel_at_period_end", "type": "boolean", "default": false},
+          {"name": "created_at", "type": "timestamp", "default": "now()"}
+        ]
+      }
+    ]
+  },
+  "deployment": {
+    "platform": "render",
+    "requirements": ["requirements.txt", "Procfile", "runtime.txt"],
+    "build_command": "pip install -r requirements.txt",
+    "start_command": "gunicorn main:app --bind 0.0.0.0:$PORT",
+    "health_check_path": "/health",
+    "auto_deploy": true,
+    "environment": "production"
+  },
+  "env_variables": {
+    "required": [
+      "DATABASE_URL",
+      "SECRET_KEY",
+      "STRIPE_SECRET_KEY",
+      "STRIPE_WEBHOOK_SECRET",
+      "REDIS_URL"
+    ],
+    "optional": [
+      "SENTRY_DSN",
+      "EMAIL_HOST",
+      "EMAIL_PORT",
+      "EMAIL_USER",
+      "EMAIL_PASSWORD",
+      "GOOGLE_OAUTH_CLIENT_ID",
+      "GITHUB_OAUTH_CLIENT_ID"
+    ]
+  },
+  "file_structure": {
+    "backend": [
+      "main.py",
+      "requirements.txt",
+      "Procfile",
+      "runtime.txt",
+      "alembic.ini",
+      "alembic/",
+      "app/",
+      "app/api/",
+      "app/core/",
+      "app/models/",
+      "app/schemas/",
+      "app/services/",
+      "app/utils/"
+    ],
+    "frontend": [
+      "package.json",
+      "vite.config.ts",
+      "tsconfig.json",
+      "tailwind.config.js",
+      "src/",
+      "src/main.tsx",
+      "src/App.tsx",
+      "src/components/",
+      "src/pages/",
+      "src/hooks/",
+      "src/store/",
+      "src/services/",
+      "src/styles/"
+    ]
+  }
+}

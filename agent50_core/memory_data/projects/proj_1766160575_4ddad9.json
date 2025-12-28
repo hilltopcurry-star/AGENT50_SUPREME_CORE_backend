@@ -1,0 +1,23 @@
+{
+    "id": "proj_1766160575_4ddad9",
+    "name": "Project proj_1766160575_4ddad9",
+    "type": "python",
+    "description": "Write a python script that prints Hello World and current time",
+    "created_at": 1766160575.2834365,
+    "status": "blueprint_ready",
+    "stack": {
+        "frontend": "React + Vite + Tailwind",
+        "backend": "FastAPI (Python)",
+        "database": "SQLite/PostgreSQL",
+        "deployment": "Docker"
+    },
+    "architecture": {
+        "files": [
+            "main.py",
+            "requirements.txt",
+            "Dockerfile",
+            "frontend/package.json",
+            "frontend/src/App.jsx"
+        ]
+    }
+}

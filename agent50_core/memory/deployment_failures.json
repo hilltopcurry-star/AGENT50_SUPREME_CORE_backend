@@ -1,0 +1,36 @@
+{
+  "failures": [
+    {
+      "project": "ecommerce_site_v1",
+      "platform": "render",
+      "error": "ModuleNotFoundError: No module named 'django'",
+      "logs": "2024-01-18 14:30:22 [ERROR] ModuleNotFoundError: No module named 'django'\nTraceback...",
+      "timestamp": "2024-01-18T14:30:22",
+      "resolved": true,
+      "fix_applied": "requirements_update",
+      "resolution_time": "2024-01-18T14:35:10"
+    },
+    {
+      "project": "analytics_dashboard",
+      "platform": "render",
+      "error": "Port binding failed: address already in use",
+      "logs": "2024-01-17 11:15:45 [ERROR] gunicorn failed to bind to $PORT\nProcess exited...",
+      "timestamp": "2024-01-17T11:15:45",
+      "resolved": true,
+      "fix_applied": "port_config",
+      "resolution_time": "2024-01-17T11:20:30"
+    },
+    {
+      "project": "ai_chat_app",
+      "platform": "render",
+      "error": "Memory limit exceeded during build",
+      "logs": "2024-01-16 09:45:33 [ERROR] Build failed: memory limit exceeded\nKilled process...",
+      "timestamp": "2024-01-16T09:45:33",
+      "resolved": true,
+      "fix_applied": "memory_optimization",
+      "resolution_time": "2024-01-16T10:10:15"
+    }
+  ],
+  "failure_count": 3,
+  "last_updated": "2024-01-20T15:00:00"
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent 50 Supreme | IT Engineer Ali Marri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0B0E14; color: #E2E8F0; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .soft-input { background: #151921; border: 1px solid #2D3748; transition: 0.3s; }
+        .soft-input:focus { border-color: #3182CE; box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2); outline: none; }
+        .btn-primary { 
+            background: linear-gradient(135deg, #3182CE 0%, #2B6CB0 100%);
+            box-shadow: 0 4px 14px 0 rgba(49, 130, 206, 0.39);
+            transition: transform 0.2s;
+        }
+        .btn-primary:active { transform: scale(0.97); }
+        .log-terminal { font-family: 'Courier New', monospace; }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0E14; }
+        ::-webkit-scrollbar-thumb { background: #2D3748; border-radius: 4px; }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden">
+
+    <div class="w-64 glass border-r border-gray-800 flex flex-col justify-between p-6">
+        <div>
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-8 h-8 rounded bg-blue-500 flex items-center justify-center font-bold text-white">A</div>
+                <div>
+                    <h1 class="font-semibold text-lg tracking-tight">AGENT 50</h1>
+                    <p class="text-xs text-gray-500">Supreme Console</p>
+                </div>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="#" class="block px-4 py-2 rounded bg-blue-500/10 text-blue-400 font-medium text-sm border border-blue-500/20">🚀 Dashboard</a>
+                <a href="#" class="block px-4 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition">📂 Projects</a>
+                <a href="#" class="block px-4 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition">🧠 Memory Banks</a>
+                <a href="#" class="block px-4 py-2 rounded text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition">⚙️ Settings</a>
+            </nav>
+        </div>
+
+        <div class="pt-6 border-t border-gray-800">
+            <p class="text-xs text-gray-500">Logged in as:</p>
+            <p class="text-sm font-semibold text-white">IT Engineer Ali Marri</p>
+            <div class="flex items-center gap-2 mt-2">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span class="text-xs text-green-500">System Online</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col p-8 overflow-y-auto relative">
+        
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h2 class="text-2xl font-semibold text-white">Mission Control</h2>
+                <p class="text-gray-400 text-sm mt-1">Ready to architect your next digital empire.</p>
+            </div>
+            <div class="glass px-4 py-2 rounded-lg flex gap-4 text-xs font-mono text-gray-400">
+                <span>CPU: <span class="text-blue-400">12%</span></span>
+                <span>MEM: <span class="text-blue-400">340MB</span></span>
+                <span>BUILDER: <span class="text-green-400">IDLE</span></span>
+            </div>
+        </div>
+
+        <div class="glass p-1 rounded-2xl p-6 mb-8 shadow-2xl">
+            <label class="block text-sm font-medium text-gray-300 mb-2">What should we build today?</label>
+            <div class="flex gap-4">
+                <input type="text" id="intentInput" class="soft-input flex-1 rounded-xl px-4 py-3 text-white placeholder-gray-600" 
+                    placeholder="e.g., A SaaS platform for dentists with subscription billing...">
+                <button onclick="startBuild()" class="btn-primary px-8 py-3 rounded-xl text-white font-medium flex items-center gap-2">
+                    <span>⚡ Initialize Build</span>
+                </button>
+            </div>
+            <div class="flex gap-3 mt-4">
+                <span class="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400 border border-gray-700 cursor-pointer hover:text-white">Suggested: Food Delivery</span>
+                <span class="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400 border border-gray-700 cursor-pointer hover:text-white">Suggested: E-commerce Store</span>
+                <span class="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400 border border-gray-700 cursor-pointer hover:text-white">Suggested: Admin Dashboard</span>
+            </div>
+        </div>
+
+        <div class="flex-1 glass rounded-2xl p-6 border border-gray-800 flex flex-col">
+            <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+                <h3 class="text-sm font-semibold text-gray-300">Live Architecture Logs</h3>
+                <button onclick="clearLogs()" class="text-xs text-gray-500 hover:text-white">Clear Terminal</button>
+            </div>
+            <div id="logContainer" class="log-terminal flex-1 overflow-y-auto space-y-2 text-sm">
+                <div class="text-gray-500">[SYSTEM] Agent 50 Core connected...</div>
+                <div class="text-gray-500">[SYSTEM] Waiting for user intent...</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function log(msg, type='info') {
+            const container = document.getElementById('logContainer');
+            const div = document.createElement('div');
+            if(msg.includes('ERROR')) div.className = 'text-red-400';
+            else if(msg.includes('SUCCESS') || msg.includes('✅')) div.className = 'text-green-400 font-bold';
+            else if(msg.includes('COMMAND')) div.className = 'text-blue-400 font-bold';
+            else div.className = 'text-gray-300';
+            div.innerText = msg;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function startBuild() {
+            const intent = document.getElementById('intentInput').value;
+            if(!intent) return alert("Please enter an intent!");
+
+            document.getElementById('intentInput').value = "";
+            
+            // Call Python API
+            try {
+                const response = await fetch('/api/build', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({intent: intent})
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (e) {
+                log("❌ Connection Error: Is server.py running?", "error");
+            }
+        }
+
+        // Auto-fetch logs every 1 second
+        let lastLogCount = 0;
+        setInterval(async () => {
+            try {
+                const res = await fetch('/api/status');
+                const data = await res.json();
+                const newLogs = data.logs;
+                
+                // Sirf naye logs add karo
+                if (newLogs.length > lastLogCount) {
+                    const toAdd = newLogs.slice(lastLogCount);
+                    toAdd.forEach(l => log(l));
+                    lastLogCount = newLogs.length;
+                }
+            } catch (e) {
+                // Silent fail
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

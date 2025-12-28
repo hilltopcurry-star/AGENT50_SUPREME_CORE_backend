@@ -1,0 +1,10 @@
+{
+    "saas": {
+        "success_rate": "90%",
+        "preferred_stack": "Flask + React"
+    },
+    "delivery": {
+        "success_rate": "85%",
+        "preferred_stack": "FastAPI + NextJS"
+    }
+}

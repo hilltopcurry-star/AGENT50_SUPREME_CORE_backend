@@ -1,0 +1,73 @@
+{
+  "current_project": "customer_portal_v2",
+  "projects": {
+    "customer_portal_v2": {
+      "created_at": "2024-01-20T10:00:00",
+      "current_status": {
+        "system": "ready",
+        "architecture": 100,
+        "backend": 100,
+        "frontend": 75,
+        "deployment": 0,
+        "timestamp": "2024-01-20T14:45:00",
+        "message": "Frontend generation in progress"
+      },
+      "status_history": [
+        {
+          "system": "initializing",
+          "architecture": 0,
+          "backend": 0,
+          "frontend": 0,
+          "deployment": 0,
+          "timestamp": "2024-01-20T10:00:00",
+          "message": "Project created"
+        },
+        {
+          "system": "ready",
+          "architecture": 100,
+          "backend": 0,
+          "frontend": 0,
+          "deployment": 0,
+          "timestamp": "2024-01-20T10:15:00",
+          "message": "Architecture blueprint complete"
+        },
+        {
+          "system": "ready",
+          "architecture": 100,
+          "backend": 100,
+          "frontend": 0,
+          "deployment": 0,
+          "timestamp": "2024-01-20T11:30:00",
+          "message": "Backend generation complete"
+        },
+        {
+          "system": "ready",
+          "architecture": 100,
+          "backend": 100,
+          "frontend": 75,
+          "deployment": 0,
+          "timestamp": "2024-01-20T14:45:00",
+          "message": "Frontend generation in progress"
+        }
+      ]
+    },
+    "ecommerce_site_v1": {
+      "created_at": "2024-01-18T14:00:00",
+      "current_status": {
+        "system": "ready",
+        "architecture": 100,
+        "backend": 100,
+        "frontend": 100,
+        "deployment": 100,
+        "timestamp": "2024-01-18T16:30:00",
+        "message": "Deployed successfully to https://ecommerce-site.onrender.com"
+      },
+      "status_history": []
+    }
+  },
+  "overall_stats": {
+    "total_projects": 2,
+    "successful_deployments": 1,
+    "failed_deployments": 0
+  }
+}

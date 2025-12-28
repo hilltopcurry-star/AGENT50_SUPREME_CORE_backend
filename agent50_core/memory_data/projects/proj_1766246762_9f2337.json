@@ -1,0 +1,27 @@
+{
+    "id": "proj_1766246762_9f2337",
+    "name": "Project_proj_1766246762_9f2337",
+    "type": "web_app",
+    "description": "A Flask web app for personal diary. It must have an HTML page with a form.",
+    "created_at": 1766246764.5303297,
+    "status": "blueprint_ready",
+    "stack": "Flask + SQLite",
+    "architecture": {
+        "files": [
+            "app.py",
+            "models.py",
+            "forms.py",
+            "config.py",
+            "requirements.txt",
+            "templates/base.html",
+            "templates/index.html",
+            "templates/entry.html",
+            "templates/create_entry.html",
+            "templates/edit_entry.html",
+            "templates/login.html",
+            "templates/register.html",
+            "static/style.css",
+            "static/js/script.js"
+        ]
+    }
+}

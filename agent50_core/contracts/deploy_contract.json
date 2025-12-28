@@ -1,0 +1,20 @@
+{
+    "render": {
+        "build_command": "pip install -r requirements.txt",
+        "start_command": "gunicorn app:app",
+        "python_version": "3.9.0",
+        "files_must_exist": [
+            "requirements.txt",
+            "Procfile",
+            "runtime.txt"
+        ],
+        "forbidden_patterns": [
+            "app.run(debug=True)",
+            "sqlite:///"
+        ]
+    },
+    "vercel": {
+        "config_file": "vercel.json",
+        "output_dir": "api"
+    }
+}
