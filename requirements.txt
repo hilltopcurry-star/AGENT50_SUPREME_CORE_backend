@@ -1,6 +1,3 @@
-Flask
-flask-cors
-flask-sqlalchemy
-psycopg2-binary
+﻿Flask
+Flask-Cors
 gunicorn
-sqlalchemy

@@ -94,14 +94,24 @@
                         <h4 class="text-primary">⚡ Super Actions</h4>
                         <button class="btn btn-success w-100 mt-2" onclick="addRestaurant()">🏢 Add New Restaurant</button>
                     </div>
-                    <div class="card p-3 shadow-sm border-warning">
+                    
+                    <div class="card p-3 shadow-sm border-warning mb-4">
                         <h4 class="text-warning">👔 Create Manager</h4>
                         <input type="email" id="newMgrEmail" class="form-control mb-2" placeholder="Manager Email">
                         <input type="password" id="newMgrPass" class="form-control mb-2" placeholder="Password">
                         <select id="resSelector" class="form-control mb-2"></select>
                         <button class="btn btn-warning w-100" onclick="createManager()">Create Manager</button>
                     </div>
-                </div>
+
+                    <div class="card p-3 shadow-sm border-info">
+                        <h4 class="text-info">🛵 Create Delivery Rider</h4>
+                        <input type="email" id="driverEmail" class="form-control mb-2" placeholder="Rider Email (Login ID)">
+                        <input type="password" id="driverPass" class="form-control mb-2" placeholder="Password">
+                        <input type="text" id="driverName" class="form-control mb-2" placeholder="Rider Name">
+                        <input type="text" id="driverPhone" class="form-control mb-2" placeholder="Phone Number">
+                        <button class="btn btn-info w-100 text-white" onclick="createDriver()">Create Rider Account</button>
+                    </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -183,7 +193,6 @@
                     // 📸 PROOF BUTTON LOGIC
                     let proofBtn = '<span class="text-muted">-</span>';
                     if(o.proof_image) {
-                        // Image data ko window object mein store karte hain taake click par access ho sake
                         window[`img_${o.id}`] = o.proof_image; 
                         proofBtn = `<button class="btn btn-sm btn-outline-dark" onclick="showProof('${o.id}')">📸 View Photo</button>`;
                     }
@@ -202,7 +211,7 @@
                 });
             }
 
-            // 3. FILL MENU & DROPDOWNS (Purana Code)
+            // 3. FILL MENU & DROPDOWNS
             const select = document.getElementById('resSelector');
             select.innerHTML = '<option value="">Select Restaurant</option>';
             data.restaurants.forEach(r => {
@@ -243,7 +252,6 @@
         } catch(e) { console.log(e); }
     }
 
-    // 📸 FUNCTION TO SHOW MODAL
     function showProof(oid) {
         const base64Img = window[`img_${oid}`];
         if(base64Img) {
@@ -254,13 +262,13 @@
         }
     }
 
-    // --- OLD FUNCTIONS (SAME AS BEFORE) ---
     async function updateProfile() {
         const phone = document.getElementById('resPhone').value;
         const email = document.getElementById('resEmail').value;
         await post('/restaurant/update_profile', {id: USER.restaurant_id, phone, email});
         alert("Profile Updated!");
     }
+    
     async function createManager() {
         const e = document.getElementById('newMgrEmail').value;
         const p = document.getElementById('newMgrPass').value;
@@ -269,6 +277,39 @@
         await fetch(API + '/admin/create_manager', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({email: e, password: p, restaurant_id: rid}) });
         alert("Manager Created!");
     }
+
+    // 🛵 NEW FUNCTION TO CREATE DRIVER
+    async function createDriver() {
+        const e = document.getElementById('driverEmail').value;
+        const p = document.getElementById('driverPass').value;
+        const n = document.getElementById('driverName').value;
+        const ph = document.getElementById('driverPhone').value;
+
+        if(!e || !p || !n) return alert("Please fill all Rider details!");
+
+        try {
+            const res = await fetch(API + '/admin/create_driver', { 
+                method: 'POST', 
+                headers: {'Content-Type':'application/json'}, 
+                body: JSON.stringify({email: e, password: p, name: n, phone: ph}) 
+            });
+            const data = await res.json();
+            if(data.error) {
+                alert("Error: " + data.error);
+            } else {
+                alert("🎉 Rider Created Successfully!");
+                // Clear fields
+                document.getElementById('driverEmail').value = '';
+                document.getElementById('driverPass').value = '';
+                document.getElementById('driverName').value = '';
+                document.getElementById('driverPhone').value = '';
+            }
+        } catch(err) {
+            console.error(err);
+            alert("Connection Error! Backend check karein.");
+        }
+    }
+
     async function addRestaurant() {
         let name = prompt("Restaurant Name:");
         if(name) { await post('/admin/restaurant/add', {name: name}); loadDashboard(); }
