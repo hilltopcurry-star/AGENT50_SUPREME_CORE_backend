@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agent 50 Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f8; }
+        .card { box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; }
+        .header { background: #2c3e50; color: white; padding: 20px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="header text-center">
+    <h1>👑 AGENT 50 HQ</h1>
+    <p>Admin Control Center</p>
+</div>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card p-3 text-center text-success">
+                <h3>💰 Total Sales</h3>
+                <h2 id="totalSales">Loading...</h2>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3 text-center text-primary">
+                <h3>📦 Total Orders</h3>
+                <h2 id="totalOrders">Loading...</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="restaurantsContainer"></div>
+
+</div>
+
+<script>
+    const API_URL = "http://192.168.0.108:5000";
+
+    async function loadData() {
+        const res = await fetch(`${API_URL}/admin/data`);
+        const data = await res.json();
+        
+        document.getElementById('totalSales').innerText = 'Rs ' + data.stats.sales;
+        document.getElementById('totalOrders').innerText = data.stats.orders;
+
+        const container = document.getElementById('restaurantsContainer');
+        container.innerHTML = '';
+
+        data.restaurants.forEach(res => {
+            let menuHtml = '';
+            res.menu.forEach(item => {
+                menuHtml += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${item.name} - <strong>Rs ${item.price}</strong>
+                        <button class="btn btn-sm btn-danger" onclick="deleteItem('${res.id}', '${item.name}')">🗑️</button>
+                    </li>
+                `;
+            });
+
+            const card = `
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between">
+                        <h4>${res.name}</h4>
+                        <small>ID: ${res.id}</small>
+                    </div>
+                    <div class="card-body">
+                        <h5>📋 Menu Items</h5>
+                        <ul class="list-group mb-3">${menuHtml}</ul>
+                        
+                        <div class="input-group">
+                            <input type="text" id="name-${res.id}" class="form-control" placeholder="New Item Name (e.g. Pizza)">
+                            <input type="number" id="price-${res.id}" class="form-control" placeholder="Price">
+                            <button class="btn btn-success" onclick="addItem('${res.id}')">➕ Add Item</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    async function addItem(resId) {
+        const name = document.getElementById(`name-${resId}`).value;
+        const price = document.getElementById(`price-${resId}`).value;
+        
+        if(!name || !price) return alert("Please enter name and price");
+
+        await fetch(`${API_URL}/admin/menu/add`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ restaurant_id: resId, name: name, price: price })
+        });
+        loadData(); // Refresh page
+    }
+
+    async function deleteItem(resId, name) {
+        if(confirm(`Delete ${name}?`)) {
+            await fetch(`${API_URL}/admin/menu/delete`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ restaurant_id: resId, name: name })
+            });
+            loadData();
+        }
+    }
+
+    loadData();
+</script>
+
+</body>
+</html>
