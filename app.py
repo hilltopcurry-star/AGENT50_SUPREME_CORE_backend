@@ -10,10 +10,19 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 
 # --- FAKE DATABASE (Memory) ---
 orders = []
+
+# ✅ USERS LIST (Admin + Permanent Google Test Driver)
 users = [
-    {"email": "admin@agent50.com", "password": "admin123", "role": "super_admin", "name": "Super Admin"}
+    {"email": "admin@agent50.com", "password": "admin123", "role": "super_admin", "name": "Super Admin"},
+    # 👇 YE RAHA AAPKA PERMANENT DRIVER (Google ke liye)
+    {"email": "google@test.com", "password": "123", "role": "driver", "name": "Google Tester", "id": "d-test", "phone": "0000000000"}
 ]
-drivers = []
+
+# ✅ DRIVERS LIST (Taake Dashboard par bhi show ho)
+drivers = [
+    {"email": "google@test.com", "password": "123", "role": "driver", "name": "Google Tester", "id": "d-test", "phone": "0000000000"}
+]
+
 managers = []
 restaurants = [{"id": "res1", "name": "Karachi Biryani House", "menu": [], "orders": []}]
 
@@ -35,7 +44,7 @@ def login():
         email = data.get('email')
         password = data.get('password')
 
-        # Admin check
+        # Admin & Driver check (Users list mein)
         for u in users:
             if u['email'] == email and u['password'] == password:
                 return jsonify(u), 200
@@ -49,7 +58,7 @@ def login():
     except:
         return jsonify({"error": "Login Error"}), 500
 
-# 2. DASHBOARD DATA (UPDATED: AB DRIVERS BHI BHEJEGA ✅)
+# 2. DASHBOARD DATA
 @app.route('/dashboard/data', methods=['POST'])
 def dashboard_data():
     return jsonify({
@@ -59,7 +68,7 @@ def dashboard_data():
         },
         "orders": orders[::-1], 
         "restaurants": restaurants,
-        "drivers": drivers, # ✅ Ye Nayi Line Hai (Drivers List Show Hogi)
+        "drivers": drivers, # ✅ Drivers List Bheji Jayegi
         "managers": managers
     })
 
@@ -174,7 +183,7 @@ def get_orders():
 def add_order():
     data = request.json
     new_order = {
-        "id": str(len(orders) + 5501), # String ID safe side ke liye
+        "id": str(len(orders) + 5501),
         "items": data.get("items", []),
         "total_amount": data.get("total_amount", 0),
         "status": "Pending",
@@ -187,7 +196,6 @@ def add_order():
 def update_order(order_id):
     data = request.json
     for order in orders:
-        # String comparison taake ID match kare
         if str(order["id"]) == str(order_id):
             order["status"] = data.get("status", order["status"])
             return jsonify(order), 200
