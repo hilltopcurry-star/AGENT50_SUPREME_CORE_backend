@@ -9,21 +9,13 @@ app = Flask(__name__, template_folder='templates')
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 # --- FAKE DATABASE (Memory) ---
-
-# 1. Orders (Aapka purana data)
 orders = []
-
-# 2. Users (Admin login)
 users = [
     {"email": "admin@agent50.com", "password": "admin123", "role": "super_admin", "name": "Super Admin"}
 ]
-
-# 3. Drivers, Managers, Restaurants
 drivers = []
 managers = []
-# ✅ Restaurant Structure (Menu ke liye tayyar)
 restaurants = [{"id": "res1", "name": "Karachi Biryani House", "menu": [], "orders": []}]
-
 
 # --- ROUTES ---
 
@@ -35,7 +27,7 @@ def home():
 def admin_panel():
     return render_template('admin.html')
 
-# --- 1. LOGIN API ---
+# 1. LOGIN API
 @app.route('/login', methods=['POST'])
 def login():
     try:
@@ -57,7 +49,7 @@ def login():
     except:
         return jsonify({"error": "Login Error"}), 500
 
-# --- 2. DASHBOARD DATA ---
+# 2. DASHBOARD DATA (UPDATED: AB DRIVERS BHI BHEJEGA ✅)
 @app.route('/dashboard/data', methods=['POST'])
 def dashboard_data():
     return jsonify({
@@ -66,10 +58,12 @@ def dashboard_data():
             "total_orders": len(orders)
         },
         "orders": orders[::-1], 
-        "restaurants": restaurants
+        "restaurants": restaurants,
+        "drivers": drivers, # ✅ Ye Nayi Line Hai (Drivers List Show Hogi)
+        "managers": managers
     })
 
-# --- 3. CREATE DRIVER API (Crash Proof) ---
+# 3. CREATE DRIVER API
 @app.route('/admin/create_driver', methods=['POST'])
 def create_driver():
     try:
@@ -92,14 +86,14 @@ def create_driver():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# --- 4. CREATE MANAGER ---
+# 4. CREATE MANAGER
 @app.route('/admin/create_manager', methods=['POST'])
 def create_manager():
     data = request.json
     managers.append(data)
     return jsonify({"message": "Manager Created"}), 200
 
-# --- 5. ADD RESTAURANT ---
+# 5. ADD RESTAURANT
 @app.route('/admin/restaurant/add', methods=['POST'])
 def add_restaurant():
     data = request.json
@@ -111,7 +105,7 @@ def add_restaurant():
     restaurants.append(new_res)
     return jsonify({"message": "Restaurant Added"}), 200
 
-# --- 6. ADD CATEGORY (Ye Missing Tha!) ---
+# 6. ADD CATEGORY
 @app.route('/admin/category/add', methods=['POST'])
 def add_category():
     data = request.json
@@ -120,13 +114,12 @@ def add_category():
     
     for r in restaurants:
         if r['id'] == rid:
-            # Check duplicate category
             if not any(c['category'] == cat for c in r['menu']):
                 r['menu'].append({"category": cat, "items": []})
             return jsonify({"message": "Category Added"}), 200
     return jsonify({"error": "Restaurant not found"}), 404
 
-# --- 7. ADD MENU ITEM (Ye bhi Missing Tha!) ---
+# 7. ADD MENU ITEM
 @app.route('/admin/menu/add', methods=['POST'])
 def add_menu_item():
     data = request.json
@@ -143,7 +136,7 @@ def add_menu_item():
                     return jsonify({"message": "Item Added"}), 200
     return jsonify({"error": "Category not found"}), 404
 
-# --- 8. DELETE MENU ITEM ---
+# 8. DELETE MENU ITEM
 @app.route('/admin/menu/delete', methods=['POST'])
 def delete_item():
     data = request.json
@@ -159,7 +152,7 @@ def delete_item():
                     return jsonify({"message": "Deleted"}), 200
     return jsonify({"error": "Error deleting"}), 404
 
-# --- 9. UPDATE PROFILE ---
+# 9. UPDATE PROFILE
 @app.route('/restaurant/update_profile', methods=['POST'])
 def update_profile():
     data = request.json
@@ -171,19 +164,17 @@ def update_profile():
             return jsonify({"message": "Updated"}), 200
     return jsonify({"error": "Error"}), 404
 
-
-# --- OLD ORDERS API ---
+# --- ORDERS API ---
 
 @app.route('/orders', methods=['GET'])
 def get_orders():
-    # Newest orders first
     return jsonify(orders[::-1])
 
 @app.route('/orders', methods=['POST'])
 def add_order():
     data = request.json
     new_order = {
-        "id": len(orders) + 5501,
+        "id": str(len(orders) + 5501), # String ID safe side ke liye
         "items": data.get("items", []),
         "total_amount": data.get("total_amount", 0),
         "status": "Pending",
@@ -192,17 +183,17 @@ def add_order():
     orders.append(new_order)
     return jsonify(new_order), 200
 
-@app.route('/orders/<int:order_id>', methods=['PUT'])
+@app.route('/orders/<order_id>', methods=['PUT'])
 def update_order(order_id):
     data = request.json
     for order in orders:
-        if order["id"] == order_id:
+        # String comparison taake ID match kare
+        if str(order["id"]) == str(order_id):
             order["status"] = data.get("status", order["status"])
             return jsonify(order), 200
     return jsonify({"error": "Order not found"}), 404
 
 
-# --- SERVER START ---
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
