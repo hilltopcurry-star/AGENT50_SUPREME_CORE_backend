@@ -4,20 +4,23 @@ import asyncio
 import logging
 import webbrowser
 import uvicorn
+from dotenv import load_dotenv  # Ye library .env file padhegi
 
-# --- 1. SUPER PATH FIX ---
+# --- 1. LOAD SECRETS (From .env file) ---
+# Ye sabse pehle chalna chahiye taake keys load ho jayein
+load_dotenv()
+
+# Check agar keys load hui hain ya nahi
+if not os.getenv("GEMINI_API_KEY"):
+    print("\n⚠️  WARNING: GEMINI_API_KEY nahi mili! Make sure karein ki .env file bani hui hai.")
+else:
+    print("✅ API Keys Loaded Successfully from .env")
+
+# --- 2. SUPER PATH FIX ---
 current_dir = os.getcwd()
 inner_dir = os.path.join(current_dir, "agent50_core")
 sys.path.append(current_dir)
 sys.path.append(inner_dir)
-
-# --- 2. REAL KEYS (SECURED FOR GITHUB UPLOAD) ---
-# Note: Asli keys ko kabhi bhi code me hardcode karke GitHub par nahi dalte.
-# Jab aap local chalayen to yahan keys wapis daal sakte hain ya .env file use karein.
-os.environ["GEMINI_API_KEY"] = ""
-os.environ["RENDER_API_KEY"] = ""
-os.environ["GITHUB_TOKEN"] = ""  # Yahan se secret hata diya gaya hai
-os.environ["RAILWAY_API_TOKEN"] = ""
 
 # --- 3. LOGGING ---
 logging.basicConfig(level=logging.INFO)
